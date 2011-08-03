@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map>
+<Map bgcolor="transparent" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minimum_version="0.7.1">
+
+  <Style name="s62">
+  <Rule>
+<Filter>[visible] = 'yes-v' or [visible] = 'yes-h'</Filter>
+
+<MaxScaleDenominator>25000</MaxScaleDenominator><LineSymbolizer>
+    <CssParameter name="stroke">#444444</CssParameter>
+    <CssParameter name="stroke-width">.3</CssParameter>
+ <CssParameter name="stroke-linejoin">round</CssParameter>
+
+</LineSymbolizer>
+</Rule>
+
+  <Rule>
+<Filter>[visible] = 'no-v' or [visible] = 'no-h'</Filter>
+
+<MaxScaleDenominator>25000</MaxScaleDenominator><LineSymbolizer>
+    <CssParameter name="stroke">#444444</CssParameter>
+    <CssParameter name="stroke-width">.3</CssParameter>
+    <!-- CssParameter name="stroke-dasharray">3,3</CssParameter -->
+ <CssParameter name="stroke-linejoin">round</CssParameter>
+
+</LineSymbolizer>
+</Rule>
+
+
+
+<!--Rule><MaxScaleDenominator>25000</MaxScaleDenominator><Filter>[visible]='yes'</Filter>
+ <TextSymbolizer name="azim" face_name="DejaVu Sans Book" size="10" fill="black" halo_fill= "white" halo_radius="1" placement="point" allow_overlap="false"/>
+
+
+</Rule -->
+<Rule><MaxScaleDenominator>25000</MaxScaleDenominator><Filter>[visible] = 'yes'</Filter>
+<PolygonSymbolizer>
+     <CssParameter name="fill">silver</CssParameter>
+     <CssParameter name="fill-opacity">0.6</CssParameter>
+</PolygonSymbolizer>
+  </Rule>
+<Rule><MaxScaleDenominator>25000</MaxScaleDenominator><Filter>[hv] = 1 and [visible] = 'yes' and [azim]&gt;=0.0 and [azim]&lt;18.0</Filter>
+<PolygonSymbolizer>
+<CssParameter name="fill">silver</CssParameter>
+<CssParameter name="fill-opacity">0.7</CssParameter>
+</PolygonSymbolizer>
+</Rule>
+<Rule><MaxScaleDenominator>25000</MaxScaleDenominator><Filter>[hv] = 1 and [visible] = 'yes' and [azim]&gt;=18.0 and [azim]&lt;36.0</Filter>
+<PolygonSymbolizer>
+<CssParameter name="fill">silver</CssParameter>
+<CssParameter name="fill-opacity">0.690211303259</CssParameter>
+</PolygonSymbolizer>
+</Rule>
+<Rule><MaxScaleDenominator>25000</MaxScaleDenominator><Filter>[hv] = 1 and [visible] = 'yes' and [azim]&gt;=36.0 and [azim]&lt;54.0</Filter>
+<PolygonSymbolizer>
+<CssParameter name="fill">silver</CssParameter>
+<CssParameter name="fill-opacity">0.661803398875</CssParameter>
+</PolygonSymbolizer>
+</Rule>
+<Rule><MaxScaleDenominator>25000</MaxScaleDenominator><Filter>[hv] = 1 and [visible] = 'yes' and [azim]&gt;=54.0 and [azim]&lt;72.0</Filter>
+<PolygonSymbolizer>
+<CssParameter name="fill">silver</CssParameter>
+<CssParameter name="fill-opacity">0.617557050458</CssParameter>
+</PolygonSymbolizer>
+</Rule>
+<Rule><MaxScaleDenominator>25000</MaxScaleDenominator><Filter>[hv] = 1 and [visible] = 'yes' and [azim]&gt;=72.0 and [azim]&lt;90.0</Filter>
+<PolygonSymbolizer>
+<CssParameter name="fill">silver</CssParameter>
+<CssParameter name="fill-opacity">0.561803398875</CssParameter>
+</PolygonSymbolizer>
+</Rule>
+<Rule><MaxScaleDenominator>25000</MaxScaleDenominator><Filter>[hv] = 1 and [visible] = 'yes' and [azim]&gt;=90.0 and [azim]&lt;108.0</Filter>
+<PolygonSymbolizer>
+<CssParameter name="fill">silver</CssParameter>
+<CssParameter name="fill-opacity">0.5</CssParameter>
+</PolygonSymbolizer>
+</Rule>
+<Rule><MaxScaleDenominator>25000</MaxScaleDenominator><Filter>[hv] = 1 and [visible] = 'yes' and [azim]&gt;=108.0 and [azim]&lt;126.0</Filter>
+<PolygonSymbolizer>
+<CssParameter name="fill">silver</CssParameter>
+<CssParameter name="fill-opacity">0.438196601125</CssParameter>
+</PolygonSymbolizer>
+</Rule>
+<Rule><MaxScaleDenominator>25000</MaxScaleDenominator><Filter>[hv] = 1 and [visible] = 'yes' and [azim]&gt;=126.0 and [azim]&lt;144.0</Filter>
+<PolygonSymbolizer>
+<CssParameter name="fill">silver</CssParameter>
+<CssParameter name="fill-opacity">0.382442949542</CssParameter>
+</PolygonSymbolizer>
+</Rule>
+<Rule><MaxScaleDenominator>25000</MaxScaleDenominator><Filter>[hv] = 1 and [visible] = 'yes' and [azim]&gt;=144.0 and [azim]&lt;162.0</Filter>
+<PolygonSymbolizer>
+<CssParameter name="fill">silver</CssParameter>
+<CssParameter name="fill-opacity">0.338196601125</CssParameter>
+</PolygonSymbolizer>
+</Rule>
+<Rule><MaxScaleDenominator>25000</MaxScaleDenominator><Filter>[hv] = 1 and [visible] = 'yes' and [azim]&gt;=162.0 and [azim]&lt;180.0</Filter>
+<PolygonSymbolizer>
+<CssParameter name="fill">silver</CssParameter>
+<CssParameter name="fill-opacity">0.309788696741</CssParameter>
+</PolygonSymbolizer>
+</Rule>
+
+
+<Rule><MaxScaleDenominator>25000</MaxScaleDenominator><Filter>[hv] = 2 and [visible] = 'yes-h'</Filter>
+<PolygonSymbolizer>
+     <CssParameter name="fill">silver</CssParameter>
+	     <CssParameter name="fill-opacity">.8</CssParameter>
+</PolygonSymbolizer>
+  </Rule>
+
+  </Style>
+    <Layer name="l63" status="on" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
+      <StyleName>s62</StyleName>
+      <Datasource>
+        <Parameter name="table">
+(
+with buildings as (select  way,
+                 (CASE WHEN z."height" ~ E'^(-)?[[:digit:]]+([.][[:digit:]]+)?$' THEN CAST (z."height" AS FLOAT) ELSE
+                      CASE WHEN z."building:levels" ~ E'^(-)?[[:digit:]]+([.][[:digit:]]+)?$' THEN CAST (z."building:levels" AS FLOAT) * 3 ELSE 0 END END) as hei,
+                  (CASE WHEN z."min_height" ~ E'^(-)?[[:digit:]]+([.][[:digit:]]+)?$' THEN CAST (z."min_height" AS FLOAT) ELSE
+                      CASE WHEN z."building:min_level" ~ E'^(-)?[[:digit:]]+([.][[:digit:]]+)?$' THEN CAST (z."building:min_level" AS FLOAT) * 3 ELSE 0 END END) as minhei
+
+                        from 
+(select way, "building:levels", "height", "building:min_level", "min_height" from
+
+planet_osm_polygon  where (building is not NULL or "man_made" in ('chimney', 'tower') or (area is not NULL and barrier in ('fence','wall') ) ) and (height is not NULL or "building:levels" is not NULL) and way &amp;&amp; expand(!bbox!,500)
+
+union
+
+select ST_Buffer(way,10), "building:levels", "height", "building:min_level", "min_height" from
+
+planet_osm_point  where (building is not NULL or "man_made" in ('chimney', 'tower') ) and (height is not NULL or "building:levels" is not NULL) and way &amp;&amp; expand(!bbox!,500)
+
+union 
+
+
+select ST_Buffer(way,0.1), "building:levels", case when "height" is not NULL then height else '2.5' end as height, "building:min_level", "min_height" from
+
+planet_osm_line  where (building is not NULL or "man_made" in ('chimney', 'tower')  or barrier in ('fence','wall')) and way &amp;&amp; expand(!bbox!,500)
+
+union
+select ST_Buffer(ST_Boundary(way),0.1), "building:levels", case when "height" is not NULL then height else '2.5' end as height, "building:min_level", "min_height" from
+
+planet_osm_polygon where ( barrier in ('fence','wall')) and "area" is NULL and way &amp;&amp; expand(!bbox!,500)
+
+) z
+
+union
+
+select b.way, case when a.residential = 'urban' then 9*1 else 3*1 end as hei, 0 as minhei from planet_osm_polygon b join planet_osm_polygon a on ( b.building is not NULL and b."building:levels" is  NULL and b.height is NULL and ST_DWithin(b.way, a.way, 0) and  (a.residential is not NULL or a.landuse='garages') and b.way &amp;&amp; !bbox!)
+
+
+)  
+                     -- Walls fill
+select (ST_ConvexHull(ST_Collect(ST_MakeLine(ST_Translate(p2,0,minhei),ST_Translate(p1,0,minhei)), ST_MakeLine(ST_Translate(p2,0,hei),ST_Translate(p1,0,hei))))) as way, LEAST(ST_Y(p1),ST_Y(p2)) as lea, 1 as hv,
+case when ST_X(p1)&gt;ST_X(p2) then 'yes' else 'no' end as visible,
+ST_Azimuth(p2,p1)/3.14159265358*180 as azim, minhei, hei, 'area' as fill
+
+from (
+   select (ST_PointN(way,generate_series(1, ST_NPoints(way)-1))) as p1, 
+          (ST_PointN(way,generate_series(2, ST_NPoints(way)))  ) as p2, hei*2 as hei, minhei*2 as minhei 
+            from (select (ST_Dump(ST_Boundary(ST_ForceRHR(ST_SimplifyPreserveTopology(way,.4))))).geom as way,minhei, hei from buildings) p) a 
+
+                      -- Roofs
+union select ST_Translate(way,0,hei) as way, ST_YMin(way) as lea, 2 as hv, 'yes-h' as visible, -500 as azim, minhei, hei, 'area' as fill
+                from (select case when o.way IS NOT NULL then ST_Difference(n.way,o.way) else n.way end as way, n.minhei *2 as minhei, n.hei*2 as hei  
+from buildings n LEFT OUTER JOIN (select ST_Union(way) as way, minhei from buildings group by minhei) o on (n.hei = o.minhei)  ) p
+
+
+                      -- Walls lines
+union
+
+select (ST_MakeLine(ST_Translate(p2,0,minhei),ST_Translate(p2,0,hei))) as way, LEAST(ST_Y(p1),ST_Y(p2)) as lea, 1 as hv,
+case when ST_X(p1)&gt;ST_X(p2) then 'yes-v' else 'no-v' end as visible, 
+ST_Azimuth(p2,p1)/3.14159265358*180 as azim, minhei, hei, 'line' as fill
+
+
+from (
+   select (ST_PointN(way,generate_series(1, ST_NPoints(way)-1))) as p1,
+          (ST_PointN(way,generate_series(2, ST_NPoints(way)))  ) as p2, hei*2 as hei, minhei*2 as minhei
+            from (select (ST_Dump(ST_Boundary(ST_ForceRHR(ST_SimplifyPreserveTopology(way,.4))))).geom as way,minhei, hei from buildings) p) a
+
+                      -- Roofs lines
+union select ST_Translate(way,0,hei) as way, ST_YMin(way) as lea, 2 as hv, 'no-h' as visible, -500 as azim, 0 as minhei, hei, 'line' as fill
+                from (select case when o.way IS NOT NULL then ST_SymDifference(n.way,o.way) else n.way end as way, n.hei*2 as hei
+from (select ST_Union(way) as way, hei from buildings group by  hei) n LEFT OUTER JOIN (select ST_Union(way) as way, minhei from buildings group by minhei) o on (n.hei = o.minhei)  ) p
+  
+
+                      -- Bottom lines
+union
+select way, ST_YMin(way) as lea, 2 as hv, 'no-h' as visible, -500 as azim, minhei, hei, 'line' as fill
+                from (select  n.way as way, n.minhei *2 as minhei, n.hei*2 as hei
+from buildings n where n.minhei=0 ) p
+
+
+order by minhei, lea DESC,fill,hv, hei
+        ) as text
+        </Parameter>
+        <Parameter name="type">postgis</Parameter>
+        <Parameter name="user">gis</Parameter>
+        <Parameter name="dbname">gis</Parameter>
+        <Parameter name="srid">900913</Parameter>
+        <Parameter name="geometry_field">way</Parameter>
+        <Parameter name="geometry_table">planet_osm_point</Parameter>
+        <Parameter name="estimate_extent">false</Parameter>
+        <Parameter name="extent">-20037508.342789244, -20037508.342780735, 20037508.342789244, 20037508.342780709</Parameter>
+      </Datasource>
+    </Layer>
+</Map>
