@@ -46,7 +46,7 @@
 
 
 <Rule><MaxScaleDenominator>25000</MaxScaleDenominator><Filter>[hv] = 2 and [visible] = 'yes-h'</Filter>
-<PolygonSymbolizer fill="silver" fill-opacity=".8" /></Rule>
+<PolygonSymbolizer fill="silver" fill-opacity=".9" /></Rule>
 
   </Style>
     <Layer name="l63" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" status="on">
@@ -63,31 +63,31 @@ with buildings as (select (ST_Dump(ST_Union(way))).geom as way, minhei, hei from
                         from 
 (select  ST_Buffer(way,0) as way, "building:levels", "height", "building:min_level", "min_height" from
 
-planet_osm_polygon  where (building is not NULL or "building:part" is not NULL or "man_made" in ('chimney', 'tower') or (area is not NULL and barrier in ('fence','wall') ) ) and (height is not NULL or "building:levels" is not NULL) and way &amp;&amp; expand(!bbox!,700)
+planet_osm_polygon p where ("building:part" is not NULL or ((building is not NULL) and not exists(select way from planet_osm_polygon pol where ST_Intersects(p.way, pol.way) and pol."building:part" is not NULL))  or "man_made" in ('chimney', 'tower') or (area is not NULL and barrier in ('fence','wall') ) ) and (height is not NULL or "building:levels" is not NULL) and way &amp;&amp; ST_expand(!bbox!,700)
 
 union
 
 select ST_Buffer(way,10), "building:levels", "height", "building:min_level", "min_height" from
 
-planet_osm_point  where (building is not NULL or "man_made" in ('chimney', 'tower') ) and (height is not NULL or "building:levels" is not NULL) and way &amp;&amp; expand(!bbox!,500)
+planet_osm_point  where (building is not NULL or "man_made" in ('chimney', 'tower') ) and (height is not NULL or "building:levels" is not NULL) and way &amp;&amp; st_expand(!bbox!,500)
 
 union 
 
 
 select ST_Buffer(way,CASE WHEN "width" ~ E'^(-)?[[:digit:]]+([.][[:digit:]]+)?$' THEN CAST ("width" AS FLOAT) ELSE 0.1 END, 'endcap=flat' ), "building:levels", case when "height" is not NULL then height else '2.5' end as height, "building:min_level", "min_height" from
 
-planet_osm_line  where (building is not NULL or "man_made" in ('chimney', 'tower')  or barrier in ('fence','wall','hedge')) and way &amp;&amp; expand(!bbox!,500)
+planet_osm_line  where (building is not NULL or "man_made" in ('chimney', 'tower')  or barrier in ('fence','wall','hedge')) and way &amp;&amp; st_expand(!bbox!,500)
 
 union
 select ST_Buffer(ST_Boundary(way),0.1), "building:levels", case when "height" is not NULL then height else '2.5' end as height, "building:min_level", "min_height" from
 
-planet_osm_polygon where ( barrier in ('fence','wall')) and "area" is NULL and way &amp;&amp; expand(!bbox!,500)
+planet_osm_polygon where ( barrier in ('fence','wall')) and "area" is NULL and way &amp;&amp; st_expand(!bbox!,500)
 
 ) z
 
 union
 
-select b.way, case when a.residential = 'urban' then 9*1 else 3*1 end as hei, 0 as minhei from planet_osm_polygon b join planet_osm_polygon a on ( b.building is not NULL and b."building:levels" is  NULL and b.height is NULL and ST_DWithin(b.way, a.way, 0) and  (a.residential is not NULL or a.landuse='garages') and b.way &amp;&amp; !bbox!)
+select b.way, case when a.residential = 'urban' then 9*1 else 3*1 end as hei, 0 as minhei from planet_osm_polygon b join planet_osm_polygon a on ( ((b.building is not NULL) and not exists(select way from planet_osm_polygon pol where ST_Intersects(b.way, pol.way) and pol."building:part" is not NULL)) and b."building:levels" is  NULL and b.height is NULL and ST_DWithin(b.way, a.way, 0) and  (a.residential is not NULL or a.landuse='garages') and b.way &amp;&amp; !bbox!)
 
 
 )  p  group by minhei, hei )
@@ -102,7 +102,7 @@ from (
             from (select (ST_Dump(ST_Boundary(ST_ForceRHR(ST_SimplifyPreserveTopology(way,.4))))).geom as way,minhei, hei from buildings) p) a 
 
                       -- Roofs
-union select ST_Translate(way,0,hei) as way, ST_YMin(way) as lea, 2 as hv, 'yes-h' as visible, -500 as azim, minhei, hei, 'area' as fill
+union select ST_Translate(way,0,hei) as way, ST_YMin(way) as lea, 2 as hv, 'yes-h' as visible, -500 as azim, (hei-0.0001) as minhei, hei, 'area' as fill
                 from (select case when o.way IS NOT NULL then ST_Difference(n.way,o.way) else n.way end as way, n.minhei *2 as minhei, n.hei*2 as hei  
 from buildings n LEFT OUTER JOIN (select ST_Union(way) as way, minhei from buildings group by minhei) o on (n.hei = o.minhei)  ) p
 
