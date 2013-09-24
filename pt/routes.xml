@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[
+    <!ENTITY bus_color "#b33">
+    <!ENTITY troll_color "#1a1">
+    <!ENTITY tram_color "#33f">
+    <!ENTITY share_taxi_color "#FF8000">
+    <!ENTITY thin_lines_max_scale "2500000">
+]>
+
+
+<Map bgcolor="transparent" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
+
+
+<Style name="busroutes">
+
+<!-- far zoom -->
+
+
+   <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and not ([trolleybus_ref] &lt;&gt; '') and not ([tram_ref] &lt;&gt; '') and not ([share_taxi_ref] &lt;&gt; '')</Filter>      <!--  bus       -->
+      <MaxScaleDenominator>&thin_lines_max_scale;</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">round</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+  <Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '') and [trolleybus_ref] &lt;&gt; '' and not ([tram_ref] &lt;&gt; '') and not ([share_taxi_ref] &lt;&gt; '')</Filter>      <!--  trolleybus       -->
+      <MaxScaleDenominator>&thin_lines_max_scale;</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">round</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+  <Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '')  and not ([trolleybus_ref] &lt;&gt; '')  and  [tram_ref] &lt;&gt; '' and not ([share_taxi_ref] &lt;&gt; '')</Filter>      <!--  tram     -->
+      <MaxScaleDenominator>&thin_lines_max_scale;</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">round</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+  <Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '')  and not ([trolleybus_ref] &lt;&gt; '')  and not ([tram_ref] &lt;&gt; '') and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  taxi    -->
+      <MaxScaleDenominator>&thin_lines_max_scale;</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">round</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+
+
+  
+  <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and [trolleybus_ref] &lt;&gt; '' and  not ([tram_ref] &lt;&gt; '') and not ([share_taxi_ref] &lt;&gt; '') </Filter>      <!--  bus + troll      -->
+      <MaxScaleDenominator>&thin_lines_max_scale;</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,0</CssParameter>        
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,7</CssParameter>        
+      </LineSymbolizer>
+  </Rule>
+   <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and not ([trolleybus_ref] &lt;&gt; '')  and [tram_ref] &lt;&gt; '' and not ([share_taxi_ref] &lt;&gt; '') </Filter>      <!--  bus+tram       -->
+      <MaxScaleDenominator>&thin_lines_max_scale;</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,0</CssParameter>        
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,7</CssParameter>        
+      </LineSymbolizer>
+  </Rule>
+   <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and not ([trolleybus_ref] &lt;&gt; '')  and not ([tram_ref] &lt;&gt; '') and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  bus+taxi       -->
+      <MaxScaleDenominator>&thin_lines_max_scale;</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,7</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+
+  
+   <Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '')  and [trolleybus_ref] &lt;&gt; '' and [tram_ref] &lt;&gt; '' and not ([share_taxi_ref] &lt;&gt; '') </Filter>      <!--  trolley+tram      -->
+      <MaxScaleDenominator>&thin_lines_max_scale;</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,0</CssParameter>        
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,7</CssParameter>        
+      </LineSymbolizer>
+  </Rule>
+   <Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '')  and [trolleybus_ref] &lt;&gt; '' and not([tram_ref] &lt;&gt; '') and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  trolley+taxi      -->
+      <MaxScaleDenominator>&thin_lines_max_scale;</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,7</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+     <Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '')  and not ([trolleybus_ref]) &lt;&gt; '' and [tram_ref] &lt;&gt; '' and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  tram+taxi      -->
+      <MaxScaleDenominator>&thin_lines_max_scale;</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,7</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+
+
+  
+   <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and [trolleybus_ref] &lt;&gt; '' and [tram_ref] &lt;&gt; '' and not ([share_taxi_ref] &lt;&gt; '') </Filter>      <!--  bus+tram+trolley       -->
+      <MaxScaleDenominator>&thin_lines_max_scale;</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,14,7,0</CssParameter>        
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,14</CssParameter>        
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,7</CssParameter>        
+      </LineSymbolizer>
+      
+      
+  </Rule>
+     <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and [trolleybus_ref] &lt;&gt; '' and not([tram_ref] &lt;&gt; '') and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  bus+taxi+trolley       -->
+      <MaxScaleDenominator>&thin_lines_max_scale;</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,14,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,14</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,7</CssParameter>
+      </LineSymbolizer>
+
+
+  </Rule>
+       <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and not([trolleybus_ref] &lt;&gt; '') and [tram_ref] &lt;&gt; '' and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  bus+tram+taxi       -->
+      <MaxScaleDenominator>&thin_lines_max_scale;</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,14,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,14</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,7</CssParameter>
+      </LineSymbolizer>
+
+
+</Rule>
+<Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '') and [trolleybus_ref] &lt;&gt; '' and [tram_ref] &lt;&gt; '' and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  bus+tram+taxi       -->
+      <MaxScaleDenominator>&thin_lines_max_scale;</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,14,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,14</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,7</CssParameter>
+      </LineSymbolizer>
+
+
+  </Rule>
+
+<Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '') and [trolleybus_ref] &lt;&gt; '' and [tram_ref] &lt;&gt; '' and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  bus+tram+troll+taxi       -->
+      <MaxScaleDenominator>&thin_lines_max_scale;</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,14,7,7</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,14,0,7</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,14</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-opacity">0.9</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,17,0,7,7,0</CssParameter>
+      </LineSymbolizer>
+
+  </Rule>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+<!--   near zoom -->
+
+   <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and not ([trolleybus_ref] &lt;&gt; '') and not ([tram_ref] &lt;&gt; '') and not ([share_taxi_ref] &lt;&gt; '')</Filter>      <!--  bus       -->
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">round</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+  <Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '') and [trolleybus_ref] &lt;&gt; '' and not ([tram_ref] &lt;&gt; '') and not ([share_taxi_ref] &lt;&gt; '')</Filter>      <!--  trolleybus       -->
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">round</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+  <Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '')  and not ([trolleybus_ref] &lt;&gt; '')  and  [tram_ref] &lt;&gt; '' and not ([share_taxi_ref] &lt;&gt; '')</Filter>      <!--  tram     -->
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">round</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+  <Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '')  and not ([trolleybus_ref] &lt;&gt; '')  and not ([tram_ref] &lt;&gt; '') and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  taxi    -->
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">round</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+
+
+
+  <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and [trolleybus_ref] &lt;&gt; '' and  not ([tram_ref] &lt;&gt; '') and not ([share_taxi_ref] &lt;&gt; '') </Filter>      <!--  bus + troll      -->
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,7</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+   <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and not ([trolleybus_ref] &lt;&gt; '')  and [tram_ref] &lt;&gt; '' and not ([share_taxi_ref] &lt;&gt; '') </Filter>      <!--  bus+tram       -->
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,7</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+   <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and not ([trolleybus_ref] &lt;&gt; '')  and not ([tram_ref] &lt;&gt; '') and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  bus+taxi       -->
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,7</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+
+
+   <Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '')  and [trolleybus_ref] &lt;&gt; '' and [tram_ref] &lt;&gt; '' and not ([share_taxi_ref] &lt;&gt; '') </Filter>      <!--  trolley+tram      -->
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,7</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+   <Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '')  and [trolleybus_ref] &lt;&gt; '' and not([tram_ref] &lt;&gt; '') and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  trolley+taxi      -->
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,7</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+     <Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '')  and not ([trolleybus_ref]) &lt;&gt; '' and [tram_ref] &lt;&gt; '' and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  tram+taxi      -->
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,7</CssParameter>
+      </LineSymbolizer>
+  </Rule>
+
+
+
+   <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and [trolleybus_ref] &lt;&gt; '' and [tram_ref] &lt;&gt; '' and not ([share_taxi_ref] &lt;&gt; '') </Filter>      <!--  bus+tram+trolley       -->
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,14,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,14</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,7</CssParameter>
+      </LineSymbolizer>
+
+
+  </Rule>
+     <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and [trolleybus_ref] &lt;&gt; '' and not([tram_ref] &lt;&gt; '') and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  bus+taxi+trolley       -->
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,14,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,14</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,7</CssParameter>
+      </LineSymbolizer>
+
+
+  </Rule>
+       <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and not([trolleybus_ref] &lt;&gt; '') and [tram_ref] &lt;&gt; '' and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  bus+tram+taxi       -->
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,14,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,14</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,7</CssParameter>
+      </LineSymbolizer>
+
+
+</Rule>
+<Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '') and [trolleybus_ref] &lt;&gt; '' and [tram_ref] &lt;&gt; '' and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  bus+tram+taxi       -->
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,14,7,0</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,14</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,7</CssParameter>
+      </LineSymbolizer>
+
+
+  </Rule>
+
+<Rule>
+      <Filter>not ([bus_ref] &lt;&gt; '') and [trolleybus_ref] &lt;&gt; '' and [tram_ref] &lt;&gt; '' and [share_taxi_ref] &lt;&gt; '' </Filter>      <!--  bus+tram+troll+taxi       -->
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&bus_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,14,7,7</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&tram_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">7,14,0,7</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&troll_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,7,7,14</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&share_taxi_color;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-opacity">0.5</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,17,0,7,7,0</CssParameter>
+      </LineSymbolizer>
+
+  </Rule>
+
+
+
+</Style>
+
+<Style name="busroutes-text">
+   <Rule>
+      <MaxScaleDenominator>300000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <TextSymbolizer name="bus_ref" face_name="DejaVu Sans Book" size="9" fill="#fff" halo_radius="2" spacing="400" placement="line" halo_fill="&bus_color;" label_position_tolerance="300" max_char_angle_delta="90" />
+      <TextSymbolizer name="trolleybus_ref" face_name="DejaVu Sans Book" size="9" fill="#fff" halo_radius="2" spacing="400" placement="line" halo_fill="&troll_color;" label_position_tolerance="300" max_char_angle_delta="90" />
+      <TextSymbolizer name="tram_ref" face_name="DejaVu Sans Book" size="9" fill="#fff" halo_radius="2" spacing="400" placement="line" halo_fill="&tram_color;" label_position_tolerance="300" max_char_angle_delta="90" />
+      <TextSymbolizer name="share_taxi_ref" face_name="DejaVu Sans Book" size="9" fill="#fff" halo_radius="2" spacing="400" placement="line" halo_fill="&share_taxi_color;" label_position_tolerance="300" max_char_angle_delta="90" />
+   </Rule>
+</Style>
+
+
+<Style name="stops-text">
+
+
+   <Rule>
+      <Filter>[name] &lt;&gt; ''</Filter>
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>15000</MinScaleDenominator>
+      <PointSymbolizer allow_overlap="no" file="white_point.png" type="png" width="6" height="6" />
+
+   </Rule>
+
+   <Rule>
+      <Filter>[name] &lt;&gt; ''</Filter>
+      <MaxScaleDenominator>15000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <PointSymbolizer allow_overlap="yes" file="white_point.png" type="png" width="6" height="6" />
+
+   </Rule>
+      <Rule>
+      <Filter>not([name] &lt;&gt; '')</Filter>
+      <MaxScaleDenominator>600000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <PointSymbolizer allow_overlap="yes" file="tilde.png" type="png" width="6" height="6" />
+   </Rule>
+
+
+
+   <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and [trolleybus_ref] &lt;&gt; '' and [tram_ref] &lt;&gt; '' </Filter>
+      <MaxScaleDenominator>15000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <TextSymbolizer name="share_taxi_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&share_taxi_color;" dy="37" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="tram_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&tram_color;" dy="27" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="trolleybus_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&troll_color;" dy="17" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="bus_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&bus_color;" dy="7" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="name" allow_overlap="yes" face_name="DejaVu Sans Book" size="10" fill="#000" halo_radius="2" halo_fill="#fff" label_position_tolerance="300" horizontal_alignment="left"  dx="-7" />
+   </Rule>
+   <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and [trolleybus_ref] &lt;&gt; '' and not ([tram_ref] &lt;&gt; '') </Filter>
+      <MaxScaleDenominator>15000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <TextSymbolizer name="share_taxi_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&share_taxi_color;" dy="27" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="trolleybus_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&troll_color;" dy="17" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="bus_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&bus_color;" dy="7" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="name" allow_overlap="yes" face_name="DejaVu Sans Book" size="10" fill="#000" halo_radius="2" halo_fill="#fff" label_position_tolerance="300" horizontal_alignment="left"  dx="-7" />
+   </Rule>
+
+
+
+   
+   <Rule>
+      <Filter>not([bus_ref] &lt;&gt; '') and [trolleybus_ref] &lt;&gt; '' and [tram_ref] &lt;&gt; '' </Filter>  
+      <MaxScaleDenominator>15000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <TextSymbolizer name="share_taxi_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&share_taxi_color;" dy="27" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="tram_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&tram_color;" dy="17" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="trolleybus_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&troll_color;" dy="7" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />      
+      <TextSymbolizer name="name" allow_overlap="yes" face_name="DejaVu Sans Book" size="10" fill="#000" halo_radius="2" halo_fill="#fff" label_position_tolerance="300" horizontal_alignment="left" dx="-7"   />
+   </Rule>
+   <Rule>
+      <Filter>not([bus_ref] &lt;&gt; '') and [trolleybus_ref] &lt;&gt; '' and not ([tram_ref] &lt;&gt; '') </Filter>
+      <MaxScaleDenominator>15000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <TextSymbolizer name="share_taxi_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&share_taxi_color;" dy="17" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="trolleybus_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&troll_color;" dy="7" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="name" allow_overlap="yes" face_name="DejaVu Sans Book" size="10" fill="#000" halo_radius="2" halo_fill="#fff" label_position_tolerance="300" horizontal_alignment="left" dx="-7"   />
+   </Rule>
+
+
+
+   
+   <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and not([trolleybus_ref] &lt;&gt; '')  and [tram_ref] &lt;&gt; '' </Filter>
+      <MaxScaleDenominator>15000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <TextSymbolizer name="share_taxi_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&share_taxi_color;" dy="27" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="tram_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&tram_color;" dy="17" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      
+      <TextSymbolizer name="bus_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&bus_color;" dy="7" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="name" allow_overlap="yes" face_name="DejaVu Sans Book" size="10" fill="#000" halo_radius="2" halo_fill="#fff" label_position_tolerance="300" horizontal_alignment="left"  dx="-7" />
+   </Rule>
+   <Rule>
+      <Filter>[bus_ref] &lt;&gt; '' and not([trolleybus_ref] &lt;&gt; '')  and not ([tram_ref] &lt;&gt; '') </Filter>
+      <MaxScaleDenominator>15000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <TextSymbolizer name="share_taxi_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&share_taxi_color;" dy="17" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="bus_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&bus_color;" dy="7" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="name" allow_overlap="yes" face_name="DejaVu Sans Book" size="10" fill="#000" halo_radius="2" halo_fill="#fff" label_position_tolerance="300" horizontal_alignment="left"  dx="-7" />
+   </Rule>
+
+
+
+
+
+   
+   <Rule>
+      <Filter>not([bus_ref] &lt;&gt; '') and not([trolleybus_ref] &lt;&gt; '') and [tram_ref] &lt;&gt; ''  </Filter>
+      <MaxScaleDenominator>15000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <TextSymbolizer name="share_taxi_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&share_taxi_color;" dy="17" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="tram_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&tram_color;" dy="7" label_position_tolerance="300" horizontal_alignment="left" dx="-8"  />
+      <TextSymbolizer name="name" allow_overlap="yes" face_name="DejaVu Sans Book" size="10" fill="#000" halo_radius="2" halo_fill="#fff" label_position_tolerance="300" horizontal_alignment="left"  dx="-7" />     
+   </Rule>
+   <Rule>
+      <Filter>not([bus_ref] &lt;&gt; '') and not([trolleybus_ref] &lt;&gt; '') and not ([tram_ref] &lt;&gt; '') </Filter>
+      <MaxScaleDenominator>15000</MaxScaleDenominator>
+      <MinScaleDenominator>50</MinScaleDenominator>
+      <TextSymbolizer name="share_taxi_ref" allow_overlap="yes" face_name="DejaVu Sans Book" size="9" halo_fill="#fff" halo_radius="2" fill="&share_taxi_color;" dy="7" label_position_tolerance="300" horizontal_alignment="left" dx="-8" />
+      <TextSymbolizer name="name" allow_overlap="yes" face_name="DejaVu Sans Book" size="10" fill="#000" halo_radius="2" halo_fill="#fff" label_position_tolerance="300" horizontal_alignment="left"  dx="-7" />
+   </Rule>   
+
+
+
+
+</Style>
+
+
+
+<Layer name="busroutes" status="on" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
+    <StyleName>busroutes</StyleName>
+    <Datasource>
+<Parameter name="type">postgis</Parameter>
+<Parameter name="password">www-data</Parameter>
+<Parameter name="host">localhost</Parameter>
+<Parameter name="port">5432</Parameter>
+<Parameter name="user">www-data</Parameter>
+<Parameter name="dbname">osm-pt</Parameter>
+      <Parameter name="table">(select way, bus_ref, tram_ref, trolleybus_ref, share_taxi_ref from planet_osm_line where route in ('public_transport') order by z_order) as roads</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+    </Datasource>
+</Layer>
+<Layer name="busstops-text" status="on" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
+    <StyleName>stops-text</StyleName>
+    <Datasource>
+<Parameter name="type">postgis</Parameter>
+<Parameter name="password">www-data</Parameter>
+<Parameter name="host">localhost</Parameter>
+<Parameter name="port">5432</Parameter>
+<Parameter name="user">www-data</Parameter>
+<Parameter name="dbname">osm-pt</Parameter>
+      <Parameter name="table">(select way, name, bus_ref, tram_ref, trolleybus_ref, share_taxi_ref from planet_osm_point where route in ('stop')  order by z_order) as roads</Parameter>
+      <!--Parameter name="table">planet_osm_line</Parameter -->
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+    </Datasource>
+</Layer>
+<Layer name="busroutes-text" status="on" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
+    <StyleName>busroutes-text</StyleName>
+    <Datasource>
+<Parameter name="type">postgis</Parameter>
+<Parameter name="password">www-data</Parameter>
+<Parameter name="host">localhost</Parameter>
+<Parameter name="port">5432</Parameter>
+<Parameter name="user">www-data</Parameter>
+<Parameter name="dbname">osm-pt</Parameter>
+      <Parameter name="table">(select way, bus_ref, tram_ref, trolleybus_ref, share_taxi_ref from planet_osm_line where route in ('public_transport')  order by z_order) as roads</Parameter>
+      <!--Parameter name="table">planet_osm_line</Parameter -->
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+    </Datasource>
+</Layer>
+
+
+
+</Map>
